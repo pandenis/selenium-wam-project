@@ -13,7 +13,7 @@ public class LocationPage {
     //General Information element locators
     private By createNewButton = By.className("EntitiesComponentHeader-CreateButton");
     private By locationNameTextField = By.name("locationName");
-   // private By LocationTypeArrow = By.cssSelector("svg.css-19bqh2r");
+    // private By LocationTypeArrow = By.cssSelector("svg.css-19bqh2r");
     private By locationTypeDropDownList = By.id("react-select-2-option-0");
     private By locationDescription = By.name("locationDescription");
     private By saveButton = By.xpath("(//div[text()='SAVE'])");
@@ -42,31 +42,58 @@ public class LocationPage {
     public void clickCreateNew() {
         try {
             driver.findElement(createNewButton).click();
-        } catch (NullPointerException e) {}
+        } catch (NullPointerException e) {
+        }
     }
 
     public void clickSave() {
         try {
             driver.findElement(saveButton).click();
-        } catch (NullPointerException e) {}
+        } catch (NullPointerException e) {
+        }
     }
 
     public void clickCancel() {
         try {
             driver.findElement(cancelButton).click();
-        } catch (NullPointerException e) {}
+        } catch (NullPointerException e) {
+        }
     }
-
 
     //Address
 
-//    private By countryTypeArrow = By.cssSelector("svg.css-19bqh2r");
-    private By countryTypeDropDownList = By.id("react-seled-3-input");
-//    private By stateTypeArrow = By.cssSelector("");
-    private By stateTypeDropDownList = By.id("react-select-4-input");
-//    private By cityTypeArrow = By.cssSelector("");
-    private By cityTypeDropDownList = By.id("react-select-5-input");
+    //    private By countryTypeArrow = By.cssSelector("svg.css-19bqh2r");
+    private By countryDropDownList = By.id("react-seled-3-input");
+    //    private By stateTypeArrow = By.cssSelector("");
+    private By stateDropDownList = By.id("react-select-4-input");
+    //    private By cityTypeArrow = By.cssSelector("");
+    private By cityDropDownList = By.id("react-select-5-input");
     private By locationAddressTextField = By.name("locationAddress");
-
     private By createButton = By.xpath("//div[text()='CREATE']");
+
+
+    public void addressContainer(String country, String state, String city, String locationAddress) {
+        this.setCountry(country);
+        this.setState(state);
+        this.setCity(city);
+        this.setLocationAddress(locationAddress);
+        this.clickCreateButton();
+    }
+
+    public void setCountry(String country) {driver.findElement(countryDropDownList).sendKeys(country);}
+
+    public void setState(String state) {driver.findElement(stateDropDownList).sendKeys(state);}
+
+    public void setCity(String city) {driver.findElement(cityDropDownList).sendKeys(city);}
+
+    public void setLocationAddress(String locationAddress) {driver.findElement(locationAddressTextField);}
+
+    public void clickCreateButton() {
+        try {
+            driver.findElement(createButton).click();
+        } catch (NullPointerException e) {
+        }
+    }
 }
+
+
