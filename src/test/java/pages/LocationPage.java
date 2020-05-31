@@ -69,7 +69,6 @@ public class LocationPage {
     //    private By cityTypeArrow = By.cssSelector("");
     private By cityDropDownList = By.id("react-select-5-input");
     private By locationAddressTextField = By.name("locationAddress");
-    private By createButton = By.xpath("//div[text()='CREATE']");
 
 
     public void addressContainer(String country, String state, String city, String locationAddress) {
@@ -77,7 +76,7 @@ public class LocationPage {
         this.setState(state);
         this.setCity(city);
         this.setLocationAddress(locationAddress);
-        this.clickCreateButton();
+        this.clickSave();
     }
 
     public void setCountry(String country) {driver.findElement(countryDropDownList).sendKeys(country);}
@@ -88,12 +87,23 @@ public class LocationPage {
 
     public void setLocationAddress(String locationAddress) {driver.findElement(locationAddressTextField);}
 
+
+    private By createButton = By.xpath("//button[text()='CREATE']");
+
     public void clickCreateButton() {
+        this.clickCreate();
+    }
+
+    private void clickCreate() {
         try {
             driver.findElement(createButton).click();
         } catch (NullPointerException e) {
+
         }
+
     }
+
+
 }
 
 
