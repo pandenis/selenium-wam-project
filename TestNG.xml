@@ -1,9 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite 1" verbose="2" >
-    <test name="Login Page" >
+    <test name="Sanity Page" >
         <classes>
-            <class name="tests.LoginPageTest" />
+   <!--         <class name="tests.LoginPageTest" />-->
+            <class name="tests.LocationPageCRUDTest" />
         </classes>
     </test>
 

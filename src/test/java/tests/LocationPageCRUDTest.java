@@ -1,10 +1,12 @@
 package tests;
 
+import common.DropDownList;
 import common.LoginFlow;
 import inputdata.DataSetter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import pages.LocationPage;
 import utils.browsers.DriverManager;
 import utils.browsers.DriverManagerFactory;
@@ -19,6 +21,7 @@ public class LocationPageCRUDTest {
     WebDriverWait wait;
     DataSetter dataSetter;
     LocationPage locationPage;
+    String dropDownElement;
 
     private final String uRL;
     private final String locationName;
@@ -40,7 +43,9 @@ public class LocationPageCRUDTest {
 
     @Test(priority = 0, description = "Create Location")
     public void _01createLocation_setGeneralInformation() {
+
+        dropDownElement = new DropDownList().getElementByNumber(locationPage.getLocationTypeDropDownList(), 0);
         locationPage = new LocationPage(driver);
-        locationPage.generalInformationContainer(locationName, "type", locationDescription);
+        locationPage.generalInformationContainer(locationName, dropDownElement, locationDescription);
     }
 }

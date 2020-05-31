@@ -10,11 +10,16 @@ public class LocationPage {
         this.driver = driver;
     }
 
+
+
     //General Information element locators
+    private String locationTypeId = "react-select-2-option-0";
     private By createNewButton = By.className("EntitiesComponentHeader-CreateButton");
     private By locationNameTextField = By.name("locationName");
+
+
     // private By LocationTypeArrow = By.cssSelector("svg.css-19bqh2r");
-    private By locationTypeDropDownList = By.id("react-select-2-option-0");
+    private By locationTypeDropDownList = By.id(locationTypeId);
     private By locationDescription = By.name("locationDescription");
     private By saveButton = By.xpath("(//div[text()='SAVE'])");
     private By cancelButton = By.xpath("(//div[text()='Cancel'])");
@@ -37,6 +42,10 @@ public class LocationPage {
 
     public void setLocationDescription(String description) {
         driver.findElement(locationDescription).sendKeys(description);
+    }
+
+    public By getLocationTypeDropDownList() {
+        return locationTypeDropDownList;
     }
 
     public void clickCreateNew() {
