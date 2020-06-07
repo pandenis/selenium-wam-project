@@ -27,7 +27,7 @@ public class LoginFlow {
         this.CorrectPassword = dataSetter.getPassword();
     }
 
-    public void LoginToAdminManager() {
+    public WebDriver LoginToAdminManager() {
 
         loginPage = new LoginPage(driver);
 
@@ -44,5 +44,7 @@ public class LoginFlow {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(class_usersNameInitialsLogo)));
         String actualURL = driver.getCurrentUrl();
         System.out.println(actualURL);
+
+        return driver;
     }
 }

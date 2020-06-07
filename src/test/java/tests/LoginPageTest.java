@@ -6,27 +6,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import pages.LoginPage;
 import utils.browsers.DriverManager;
 import utils.browsers.DriverManagerFactory;
 import utils.browsers.DriverType;
-
-import java.io.IOException;
 
 public class LoginPageTest {
     DriverManager driverManager;
     WebDriver driver;
     LoginPage loginPage;
     WebDriverWait wait;
+    DataSetter dataSetter;
 
-    private final String uRL;
+    private String uRL;
     private final String CorrectUserName;
     private String CorrectPassword;
 
-    DataSetter dataSetter = new DataSetter();
 
-    public LoginPageTest() throws IOException {
+
+    public LoginPageTest() {
         this.uRL = dataSetter.getuRL();
         this.CorrectUserName = dataSetter.getUsername();
         this.CorrectPassword = dataSetter.getPassword();

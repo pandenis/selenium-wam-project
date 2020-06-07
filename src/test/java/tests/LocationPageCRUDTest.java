@@ -1,5 +1,6 @@
 package tests;
 
+import common.CookiesManagement;
 import common.DropDownList;
 import common.LoginFlow;
 import inputdata.DataSetter;
@@ -20,6 +21,7 @@ public class LocationPageCRUDTest {
     LoginFlow loginFlow;
     WebDriverWait wait;
     DataSetter dataSetter;
+    CookiesManagement cookiesManagement;
     LocationPage locationPage;
     String dropDownElement;
 
@@ -27,18 +29,22 @@ public class LocationPageCRUDTest {
     private final String locationName;
     private final String locationDescription;
 
-    public LocationPageCRUDTest(String uRL, String locationName, String description) throws IOException {
-        this.uRL = uRL;
-        this.locationName = locationName;
-        this.locationDescription = description;
+    public LocationPageCRUDTest() throws IOException {
+        this.dataSetter = new DataSetter();
+        this.uRL = dataSetter.getuRL();
+        this.locationName = "Loc name";
+        this.locationDescription = "Loc desc";
     }
 
     @BeforeClass
     public void setUp() {
         driverManager = DriverManagerFactory.getDriverManager(DriverType.FIREFOX);
         driver = driverManager.getWebDriver();
-        driver.navigate().to(uRL);
-        loginFlow.LoginToAdminManager();
+        cookiesManagement = new CookiesManagement(driver);
+        cookiesManagement.getAllCookies(driver);
+        driver = cookiesManagement.setAllCookies(driver);
+        driver.navigate().to(uRL + "/locations");
+
     }
 
     @Test(priority = 0, description = "Create Location")
