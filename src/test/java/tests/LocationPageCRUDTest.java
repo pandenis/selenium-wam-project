@@ -37,12 +37,14 @@ public class LocationPageCRUDTest {
     }
 
     @BeforeClass
-    public void setUp() {
+    public void setUp() throws IOException {
         driverManager = DriverManagerFactory.getDriverManager(DriverType.FIREFOX);
         driver = driverManager.getWebDriver();
-        cookiesManagement = new CookiesManagement(driver);
-        cookiesManagement.getAllCookies(driver);
-        driver = cookiesManagement.setAllCookies(driver);
+        driver.navigate().to(uRL);
+        cookiesManagement = new CookiesManagement();
+//        cookiesManagement.getAllCookies(driver);
+        driver = cookiesManagement.cookieWrite(driver);
+        //driver = cookiesManagement.setAllCookies(driver);
         driver.navigate().to(uRL + "/locations");
 
     }
